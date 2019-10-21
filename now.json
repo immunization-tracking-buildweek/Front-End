@@ -3,7 +3,7 @@
   "name": "cardea",
   "builds": [
     {
-      "src": "cardea/package.json",
+      "src": "/cardea/package.json",
       "use": "@now/static-build",
       "config": { "distDir": "build" }
     }

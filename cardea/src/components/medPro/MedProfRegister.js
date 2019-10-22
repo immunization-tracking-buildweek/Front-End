@@ -1,26 +1,31 @@
 import React, { useState } from "react";
-
-import axios from "axios";
-import { Link } from "react-router-dom";
-import { connect } from "react-redux";
-
+import { authMedRegister } from "../../actions"
+import { connect } from "react-redux"
 // import {withFormik, Form, Field} from "formik";
 // import * as Yup from "yup";
 
-const MedProfRegister =props => {
+const MedProfRegister = props => {
     console.log(props)
-    const [medProfRegister, setMedProfRegister] = useState([]);
+    const [medProfRegister, setMedProfRegister] = useState({
+        "medicEmail": "",
+        "medicPassword": "",
+        "company": "",
+        "position": ""
+    });
 
     const handleChange = e => {
-        setMedProfRegister()
+        setMedProfRegister({
+            setMedProfRegister,
+            [e.target.name]: e.target.value
+        })
     }
 
     const register = e => {
+        console.log(medProfRegister)
         e.preventDefault();
-
-        
+        props.authMedRegister(medProfRegister);
+        props.history.push("/medical-professional-login");
     }
-
 
     return (
         <div>
@@ -67,11 +72,15 @@ const MedProfRegister =props => {
     )
 };
 
-// const mapStateToProps = state => {
-//     return {
+const mapStateToProps = state => {
+    return {
+        medInfo: state.medInfo,
+        isLoading: state.isLoading,
+        error: state.error
+    }
+}
 
-//     }
-// }
-
-
-export default MedProfRegister;
+export default connect (
+    mapStateToProps,
+    { authMedRegister }
+)(MedProfRegister);

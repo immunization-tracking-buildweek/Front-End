@@ -26,7 +26,7 @@ export const authMedRegisterReducer = ( state = initialState, action ) => {
         case MED_REGISTER_SUCCESS:
             return {
                 ...state,
-                patientInfo: action.payload,
+                medInfo: action.payload,
                 isLoading: false,
                 error: ""
             }
@@ -53,7 +53,7 @@ export const authMedLoginReducer = ( state = initialState, action ) => {
         case MED_LOGIN_SUCCESS:
             return {
                 ...state,
-                patientInfo: action.payload,
+                medInfo: action.payload,
                 isLoading: false,
                 error: ""
             }

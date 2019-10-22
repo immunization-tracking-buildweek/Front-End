@@ -1,20 +1,27 @@
 // general imports 
 import axiosWithAuth from "../utils/axiosWithAuth"
-// import axios from "axios"
+import axios from "axios"
 
 // action types for user login
 export const USER_LOGIN_START = "USER_LOGIN_START"
 export const USER_LOGIN_SUCCESS = "USER_LOGIN_SUCCESS"
 export const USER_LOGIN_FAILURE = "USER_LOGIN_FAILURE"
 
-export const authUsersLogin = ( props ) => dispatch => {
+export const authUsersLogin = ( patientLogin, props ) => dispatch => {
     dispatch({ type: USER_LOGIN_START })
 
-    axiosWithAuth()
-        .post(`https://immunizationtracker-bw.herokuapp.com/apiauth/user-login` )
+    axios
+        .post(`https://immunizationtracker-bw.herokuapp.com/api/auth/user-login`, patientLogin )
         .then(res => {
             console.log(`This is the initial console.log in authActions.js - user_login`, res);
-            dispatch({  type: USER_LOGIN_SUCCESS });
+            // version 1 - just below, didn't work
+            dispatch({  type: USER_LOGIN_SUCCESS, payload: res.data });
+            // version 4 -- tried changing the payload
+            // dispatch({  type: USER_LOGIN_SUCCESS, payload: res.data.payload });
+
+            // version 2 - just below, didn't work 
+            // version 3 - lines 18 and 21
+            localStorage.setItem('token', res.data.token )
             props.history.push("/patient-dashboard");
         })
         .catch(err => {

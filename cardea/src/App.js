@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom"
 
 
 // import components
+import PrivateRoute from "./utils/PrivateRoute"
 import MainRegistration from "./mainRegistration"
 import PatientLogin from "./components/patient/PatientLogin"
 import MedProfLogin from "./components/medPro/MedProfLogin"
@@ -16,29 +17,31 @@ function App() {
   return (
     <Router> 
       <div className="App">
-        <Link to = {`/patient-login`} />
-        <Link to = {`/medical-professional-login`} />
+        <Link to = {"/patient-login"} className="link-header">Patient Login</Link> 
+        <Link to = {"/medical-professional-login"} className="link-header">Medical Professional Login</Link> 
         <MainRegistration />
-        <Route 
-          path ="/medical-professional-login" 
-          render={props => <MedProfLogin {...props} />} 
-        />
-        <Route 
-          path="/patient-login" 
-          render={ props => <PatientLogin {...props} />} 
-        />
-        <Route 
-          path="/patient-register"
-          render={ props => <PatientRegister {...props} />}
-        />
-        <Route 
-          path="/medical-professional-register"
-          render={() => <MedProfRegister />}
-        />
-        <Route 
-          path="/patient-dashboard"
-          render={() => <PatientDashboard />}
-        />
+        <Switch>
+          <PrivateRoute 
+            exact path="/patient-dashboard"
+            component={PatientDashboard}
+          />
+          <Route 
+            exact path ="/medical-professional-login" 
+            render={props => <MedProfLogin {...props} />} 
+          />
+          <Route 
+            exact path="/patient-login" 
+            render={ props => <PatientLogin {...props} />} 
+          />
+          <Route 
+            exact path="/patient-register"
+            render={ props => <PatientRegister {...props} />}
+          />
+          <Route 
+            exact path="/medical-professional-register"
+            render={() => <MedProfRegister />}
+          />
+        </Switch>
       </div>
     </Router>
   );

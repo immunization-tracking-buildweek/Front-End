@@ -4,8 +4,7 @@ import { connect } from "react-redux"
 // import {withFormik, Form, Field} from "formik";
 // import * as Yup from "yup";
 
-const PatientLogin = props => {
-    console.log(props)
+const PatientLogin = ( props ) => {
     const [patientLogin, setPatientLogin] = useState({
         "userEmail": "",
         "userPassword": ""
@@ -19,9 +18,9 @@ const PatientLogin = props => {
     }
 
     const login = e => {
-        console.log(props)
+        console.log(patientLogin);
         e.preventDefault();
-        props.authUsersLogin(patientLogin, props.history)
+        props.authUsersLogin(patientLogin, props);
     }
 
     return (
@@ -29,7 +28,7 @@ const PatientLogin = props => {
             <form onSubmit={login}>
                 <input
                     type='text'
-                    name='email'
+                    name='userEmail'
                     value={props.userEmail}
                     onChange={handleChange}
                     placeholder='User Email'
@@ -38,17 +37,34 @@ const PatientLogin = props => {
 
                 <input
                     type='text'
-                    name='password'
+                    name='userPassword'
                     value={props.userPassword}
                     onChange={handleChange}
                     placeholder='User password'
                     label='password'
                 />
-                <button>Register</button>
+                <button>Login</button>
             </form>
             
         </div>
     )
 };
 
-export default PatientLogin;
+const mapStateToProps = state => {
+    return {
+        // version 1
+        // patientInfo: state.patientInfo,
+        // isLoading: state.isLoading,
+        // error: state.error
+
+        // version 2
+        patientInfo: state.patientLogin,
+        isLoading: state.isLoading,
+        error: state.error
+    }
+}
+
+export default connect (
+    mapStateToProps,
+    { authUsersLogin }
+)(PatientLogin);

@@ -5,17 +5,32 @@ import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom"
 
 // import components
 import MainRegistration from "./mainRegistration"
-import PrivateRoute from "./utils/PrivateRoute"
-import PatientLogin from "./components/patient/patientLogin"
+import PatientLogin from "./components/patient/PatientLogin"
+import MedProfLogin from "./components/medPro/MedProfLogin"
+import PatientRegister from "./components/patient/PatientRegister"
+import MedProfRegister from "./components/medPro/MedProfRegister"
 
 function App() {
   return (
     <Router> 
       <div className="App">
         <MainRegistration />
-        <Switch>
-          <PrivateRoute path="/protected" component={PatientLogin} />
-        </Switch>
+        <Route 
+          path="/medical-professional-login" 
+          render={props => <MedProfLogin {...props} />} 
+        />
+        <Route 
+          path="/patient-login" 
+          render={ props => <PatientLogin {...props} />} 
+        />
+        <Route 
+          path="/patient-register"
+          render={() => <PatientRegister />}
+        />
+        <Route 
+          path="/medical-professional-register"
+          render={() => <MedProfRegister />}
+        />
       </div>
     </Router>
   );

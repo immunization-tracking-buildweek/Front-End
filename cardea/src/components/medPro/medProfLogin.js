@@ -4,11 +4,11 @@ import { Link } from "react-router-dom";
 // import {withFormik, Form, Field} from "formik";
 // import * as Yup from "yup";
 
-const medProfRegister =() =>{
-    const [medRegister, setMedProfRegister] = useState([]);
+const MedProfLogin =() =>{
+    const [medProfLogin, setMedProfLogin] = useState([]);
 
     const handleChange = e => {
-        setMedProfRegister()
+        setMedProfLogin()
     }
 
     const register = e => {
@@ -37,11 +37,11 @@ const medProfRegister =() =>{
                     placeholder='User password'
                     label='password'
                 />
-                <button>Register</button>
+                <button>Login</button>
             </form>
             
         </div>
     )
 };
 
-export default medProfRegister;
+export default MedProfLogin;

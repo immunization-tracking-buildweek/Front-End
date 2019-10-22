@@ -4,8 +4,8 @@ import { Link } from "react-router-dom";
 // import {withFormik, Form, Field} from "formik";
 // import * as Yup from "yup";
 
-const medProfRegister =() =>{
-    const [medRegister, setMedProfRegister] = useState([]);
+const MedProfRegister =() =>{
+    const [medProfRegister, setMedProfRegister] = useState([]);
 
     const handleChange = e => {
         setMedProfRegister()
@@ -44,4 +44,4 @@ const medProfRegister =() =>{
     )
 };
 
-export default medProfRegister;
+export default MedProfRegister;

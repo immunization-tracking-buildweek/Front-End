@@ -1,10 +1,15 @@
 import React from "react";
 
-const PatientCard = () =>{
 
+const PatientCard = props =>{
+    console.log("This is the patient card", props)
     return(
         <div>
-            {}
+            <h1>Props in Here??</h1>
+            <p>Immunization history??</p>
+            <h3></h3>
+            <button>Add info button?</button>
+            <button>Add Permission Button?</button>
         </div>
     )
 }

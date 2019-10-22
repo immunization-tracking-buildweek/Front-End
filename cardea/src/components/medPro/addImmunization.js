@@ -55,3 +55,5 @@ const AddImmunization = () => {
         </div>
     )
 }
+
+export default AddImmunization

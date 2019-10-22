@@ -1,6 +1,4 @@
 import React, { useState } from "react";
-import axios from "axios";
-import { Link } from "react-router-dom";
 import { authUsersRegister } from "../../actions"
 import { connect } from "react-redux"
 // import {withFormik, Form, Field} from "formik";
@@ -9,9 +7,9 @@ import { connect } from "react-redux"
 const PatientRegister = props =>{
     console.log(props)
     const [patientRegister, setPatientRegister] = useState({
-        userEmail: "",
-        userPassword: "",
-        userName: ""
+        "userEmail": "",
+        "userPassword": "",
+        "userName": ""
     });
 
     const handleChange = e => {
@@ -22,8 +20,10 @@ const PatientRegister = props =>{
     }
 
     const register = e => {
+        console.log(patientRegister);
         e.preventDefault();
-        authUsersRegister();
+        props.authUsersRegister(patientRegister);
+        props.history.push("/patient-login");
     }
 
 
@@ -32,8 +32,8 @@ const PatientRegister = props =>{
             <form onSubmit={register}>
                 <input
                     type='text'
-                    name='email'
-                    value={props.email}
+                    name='userEmail'
+                    value={props.userEmail}
                     onChange={handleChange}
                     placeholder='User Email'
                     label='email'
@@ -41,8 +41,8 @@ const PatientRegister = props =>{
 
                 <input
                     type='text'
-                    name='username'
-                    value={props.username}
+                    name='userName'
+                    value={props.userName}
                     onChange={handleChange}
                     placeholder='Username'
                     label='username'
@@ -50,8 +50,8 @@ const PatientRegister = props =>{
 
                 <input
                     type='text'
-                    name='password'
-                    value={props.password}
+                    name='userPassword'
+                    value={props.userPassword}
                     onChange={handleChange}
                     placeholder='User password'
                     label='password'
@@ -73,5 +73,5 @@ const mapStateToProps = state => {
 
 export default connect (
     mapStateToProps,
-    { PatientRegister }
+    { authUsersRegister }
 )(PatientRegister);

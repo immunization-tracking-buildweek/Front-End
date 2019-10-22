@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+
 // import {withFormik, Form, Field} from "formik";
 // import * as Yup from "yup";
 
-const MedProfRegister =() =>{
+const MedProfRegister =props => {
+    console.log(props)
     const [medProfRegister, setMedProfRegister] = useState([]);
 
     const handleChange = e => {
@@ -13,6 +16,7 @@ const MedProfRegister =() =>{
 
     const register = e => {
         e.preventDefault();
+
         
     }
 
@@ -43,5 +47,12 @@ const MedProfRegister =() =>{
         </div>
     )
 };
+
+// const mapStateToProps = state => {
+//     return {
+
+//     }
+// }
+
 
 export default MedProfRegister;

@@ -11,7 +11,7 @@ const MedProfLogin =() =>{
         setMedProfLogin()
     }
 
-    const register = e => {
+    const login = e => {
         e.preventDefault();
         
     }
@@ -19,11 +19,11 @@ const MedProfLogin =() =>{
 
     return (
         <div>
-            <form onSubmit={register}>
+            <form onSubmit={login}>
                 <input
                     type='text'
                     name='email'
-                    value={props.email}
+                    // value={props.email}
                     onChange={handleChange}
                     placeholder='User Email'
                     label='email'
@@ -32,7 +32,7 @@ const MedProfLogin =() =>{
                 <input
                     type='text'
                     name='password'
-                    value={props.password}
+                    // value={props.password}
                     onChange={handleChange}
                     placeholder='User password'
                     label='password'

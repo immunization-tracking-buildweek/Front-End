@@ -1,28 +1,35 @@
-import { action types } from "../actions"
+import { 
+    USER_LOGIN_START,
+    USER_LOGIN_SUCCESS,
+    USER_LOGIN_FAILURE,
+    USER_REGISTER_START,
+    USER_REGISTER_SUCCESS,
+    USER_REGISTER_FAILURE,
+ } from "../actions"
 
 const initialState = {
     patientInfo: [],
     isLoading: false,
     error: "",
-    isAuth: getItem.localStorage('token') ? true : false
+    isAuth: localStorage.getItem('token') ? true : false
 }
 
-const authReducer = ( state = initialState, action ) => {
+export const authUserLoginReducer = ( state = initialState, action ) => {
     switch(action.type) {
-        case START_AUTH:
+        case USER_LOGIN_START:
             return {
                 ...state,
                 isLoading: true,
                 error: "",
             }
-        case AUTH_SUCCESS:
+        case USER_LOGIN_SUCCESS:
             return {
                 ...state,
                 patientInfo: action.payload,
                 isLoading: false,
                 error: ""
             }
-        case AUTH_FAILURE:
+        case USER_LOGIN_FAILURE:
             return {
                 ...state,
                 error: action.payload,
@@ -33,4 +40,28 @@ const authReducer = ( state = initialState, action ) => {
     }
 }
 
-export default authReducer
+export const authUserRegisterReducer = ( state = initialState, action ) => {
+    switch(action.type) {
+        case USER_REGISTER_START:
+            return {
+                ...state,
+                isLoading: true,
+                error: "",
+            }
+        case USER_REGISTER_SUCCESS:
+            return {
+                ...state,
+                patientInfo: action.payload,
+                isLoading: false,
+                error: ""
+            }
+        case USER_REGISTER_FAILURE:
+            return {
+                ...state,
+                error: action.payload,
+                isLoading: false
+            }
+        default:
+            return state;
+    }
+}

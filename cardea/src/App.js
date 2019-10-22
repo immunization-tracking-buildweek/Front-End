@@ -12,13 +12,15 @@ import MedProfRegister from "./components/medPro/MedProfRegister"
 import PatientDashboard from "./components/patient/patientDashboard"
 
 function App() {
+
   return (
     <Router> 
       <div className="App">
-        
+        <Link to = {`/patient-login`} />
+        <Link to = {`/medical-professional-login`} />
         <MainRegistration />
         <Route 
-          path="/medical-professional-login" 
+          path ="/medical-professional-login" 
           render={props => <MedProfLogin {...props} />} 
         />
         <Route 

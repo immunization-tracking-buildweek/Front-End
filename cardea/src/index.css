@@ -15,5 +15,11 @@ code {
 .main-register-container {
   display: flex;
   flex-direction: column;
+  padding: 0px;
+}
+
+.App {
+  display: flex;
+  flex-direction: column;
   padding: 50px;
 }

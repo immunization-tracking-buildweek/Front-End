@@ -24,4 +24,4 @@ export const MedProfDashboard = () => {
 }
 
 //export
-export default medProfDashboard
+export default MedProfDashboard

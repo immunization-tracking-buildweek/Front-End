@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
+
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
@@ -26,8 +27,8 @@ const MedProfRegister =props => {
             <form onSubmit={register}>
                 <input
                     type='text'
-                    name='email'
-                    value={props.email}
+                    name='medicEmail'
+                    value={props.medicEmail}
                     onChange={handleChange}
                     placeholder='User Email'
                     label='email'
@@ -35,10 +36,28 @@ const MedProfRegister =props => {
 
                 <input
                     type='text'
-                    name='password'
-                    value={props.password}
+                    name='medicPassword'
+                    value={props.medicPassword}
                     onChange={handleChange}
                     placeholder='User password'
+                    label='password'
+                />
+
+                <input
+                    type='text'
+                    name='company'
+                    value={props.company}
+                    onChange={handleChange}
+                    placeholder='Company'
+                    label='password'
+                />
+
+                <input
+                    type='text'
+                    name='position'
+                    value={props.position}
+                    onChange={handleChange}
+                    placeholder='Position'
                     label='password'
                 />
                 <button>Register</button>

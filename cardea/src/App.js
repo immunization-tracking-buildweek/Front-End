@@ -11,6 +11,7 @@ import MedProfLogin from "./components/medPro/MedProfLogin"
 import PatientRegister from "./components/patient/PatientRegister"
 import MedProfRegister from "./components/medPro/MedProfRegister"
 import PatientDashboard from "./components/patient/patientDashboard"
+import MedProfDashboard from './components/medPro/MedProfDashboard';
 
 function App() {
 
@@ -24,6 +25,10 @@ function App() {
           <PrivateRoute 
             exact path="/patient-dashboard"
             component={PatientDashboard}
+          />
+          <PrivateRoute 
+            exact path="/medical-professional-dashboard"
+            component={MedProfDashboard}
           />
           <Route 
             exact path ="/medical-professional-login" 

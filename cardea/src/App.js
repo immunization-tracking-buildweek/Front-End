@@ -9,11 +9,13 @@ import PatientLogin from "./components/patient/PatientLogin"
 import MedProfLogin from "./components/medPro/MedProfLogin"
 import PatientRegister from "./components/patient/PatientRegister"
 import MedProfRegister from "./components/medPro/MedProfRegister"
+import PatientDashboard from "./components/patient/patientDashboard"
 
 function App() {
   return (
     <Router> 
       <div className="App">
+        
         <MainRegistration />
         <Route 
           path="/medical-professional-login" 
@@ -25,11 +27,15 @@ function App() {
         />
         <Route 
           path="/patient-register"
-          render={() => <PatientRegister />}
+          render={ props => <PatientRegister {...props} />}
         />
         <Route 
           path="/medical-professional-register"
           render={() => <MedProfRegister />}
+        />
+        <Route 
+          path="/patient-dashboard"
+          render={() => <PatientDashboard />}
         />
       </div>
     </Router>

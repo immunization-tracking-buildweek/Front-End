@@ -4,7 +4,7 @@ import React from "react"
 
 
 // component
-export const medProfDashboard = () => {
+export const MedProfDashboard = () => {
     //console.log(props)
 
     //are we going to want diff classNames in medProfDashboard return divs than patientDashboard

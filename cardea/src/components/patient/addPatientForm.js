@@ -1,30 +1,60 @@
 import React, {useState, useEffect} from 'react';
 
 
-//props right below addPatient and above useState?
-const addPatientForm = () => {
-    // const{addPatient, editPatient, patientToEdit} = props;
-    const [newPatient, setNewPatient] = useState({firstName: "", lastName: "", birthDate: ""})
+const AddPatientForm = () => {
+    //props?
+    const [newPatient, setNewPatient] = useState({ firstName: "", lastName: "", birthDate: ""})
 
-    // const patientChange = e => {
-    //     setNewPatient({...newPatient, [e.target.name]: e.target.value})
-    // }
-
-
-    const patientSubmit = e => {
-        e.preventDefault();
-        if(patientToEdit){
-            editPatient(newPatient)
-    } else {
-        addPatient({...newPatient, id: () })
+    const PatientChange = e => {
+        setNewPatient({})
     }
-    setNewPatient({firstName: "", lastName: "", birthDate: ""});
 
-    useEffect(() => {
-        if (patientToEdit) setNewPatient({...patientToEdit})
-    }, [patientToEdit])
 
-    return ()
+    const PatientSubmit = e => {
+        e.preventDefault();
+
+        setNewPatient({firstName: "", lastName: "", birthDate: ""});
+    }
+
+    return (
+        <div>
+            <h1>AddPatientForm</h1>
+            <form onSubmit={PatientSubmit}>
+                <label>
+                    First Name:
+                    <input
+                    type="text"
+                    name="firstName"
+                    placeholder= "First Name"
+                    value={newPatient.firstName}
+                    onChange={PatientChange}
+                    />
+                </label>
+                <label>
+                    Last Name:
+                    <input
+                    type="text"
+                    name="lastName"
+                    placeholder= "Last Name"
+                    value={newPatient.lastName}
+                    onChange={PatientChange}
+                    />
+                </label>
+                <label>
+                    DOB:
+                    <input
+                    type="text"
+                    name="birthDate"
+                    placeholder= "mm/dd/yyyy"
+                    value={newPatient.birthDate}
+                    onChange={PatientChange}
+                    />
+                </label>
+                <button>Add Patient</button>
+            </form>
+        </div>
+    )
 }
-}
+
+   
 

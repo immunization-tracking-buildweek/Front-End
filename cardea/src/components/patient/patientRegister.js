@@ -26,7 +26,6 @@ const PatientRegister = props =>{
         props.history.push("/patient-login");
     }
 
-
     return (
         <div>
             <form onSubmit={register}>

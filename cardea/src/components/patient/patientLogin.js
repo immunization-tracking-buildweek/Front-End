@@ -1,25 +1,25 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 // import {withFormik, Form, Field} from "formik";
 // import * as Yup from "yup";
 
-const patientRegister =() =>{
-    const [patientRegister, setPatientRegister] = useState([]);
+const PatientLogin = props => {
+    console.log(props)
+    const [patientLogin, setPatientLogin] = useState([]);
 
     const handleChange = e => {
-        setPatientRegister()
+        setPatientLogin()
     }
 
-    const register = e => {
+    const login = e => {
         e.preventDefault();
         
     }
 
-
     return (
         <div>
-            <form onSubmit={register}>
+            <form onSubmit={login}>
                 <input
                     type='text'
                     name='email'
@@ -44,4 +44,4 @@ const patientRegister =() =>{
     )
 };
 
-export default patientRegister;
+export default PatientLogin;

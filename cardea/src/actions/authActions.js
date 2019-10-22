@@ -11,7 +11,7 @@ export const USER_REGISTER_START = "USER_REGISTER_START"
 export const USER_REGISTER_SUCCESS = "USER_REGISTER_SUCCESS"
 export const USER_REGISTER_FAILURE = "USER_REGISTER_FAILURE"
 
-export const authUsersLogin = () => dispatch => {
+export const authUsers = () => dispatch => {
     dispatch({ type: USER_LOGIN_START })
 
     axiosWithAuth
@@ -20,7 +20,7 @@ export const authUsersLogin = () => dispatch => {
         .catch(err => console.log(`This is the failure from authActions.js - user_login`, err))
 }
 
-export const authUsersRegister = () => dispatch => {
+export const authUsers = () => dispatch => {
     dispatch({ type: USER_REGISTER_START })
 
     axiosWithAuth

@@ -1,19 +1,29 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import { authUsersRegister } from "../../actions"
+import { connect } from "react-redux"
 // import {withFormik, Form, Field} from "formik";
 // import * as Yup from "yup";
 
-const PatientRegister =() =>{
-    const [patientRegister, setPatientRegister] = useState([]);
+const PatientRegister = props =>{
+    console.log(props)
+    const [patientRegister, setPatientRegister] = useState({
+        userEmail: "",
+        userPassword: "",
+        userName: ""
+    });
 
     const handleChange = e => {
-        setPatientRegister()
+        setPatientRegister({
+            ...patientRegister,
+            [e.target.name]: e.target.value
+        })
     }
 
     const register = e => {
         e.preventDefault();
-        
+        authUsersRegister();
     }
 
 
@@ -31,6 +41,15 @@ const PatientRegister =() =>{
 
                 <input
                     type='text'
+                    name='username'
+                    value={props.username}
+                    onChange={handleChange}
+                    placeholder='Username'
+                    label='username'
+                />
+
+                <input
+                    type='text'
                     name='password'
                     value={props.password}
                     onChange={handleChange}
@@ -44,4 +63,15 @@ const PatientRegister =() =>{
     )
 };
 
-export default PatientRegister;
+const mapStateToProps = state => {
+    return {
+        patientInfo: state.patientInfo,
+        isLoading: state.isLoading,
+        error: state.error
+    }
+}
+
+export default connect (
+    mapStateToProps,
+    { PatientRegister }
+)(PatientRegister);

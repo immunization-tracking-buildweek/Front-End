@@ -10,10 +10,14 @@ export const MainRegistration = () => {
     // console.log(props)
 
     return (
-        <div>
+        <div className="main-register-container">
             <h1>Welcome to Cardea!</h1>
-            <Link to="/patient-register" className="link-button">Register as a patient</Link>
-            <Link to="/medical-professional-register" className="link-button">Register as a medical professional</Link>
+            <div>
+                <Link to="/patient-register" className="link-button">Register as a patient</Link>
+            </div>
+            <div>
+                <Link to="/medical-professional-register" className="link-button">Register as a medical professional</Link>
+            </div>
         </div>
 
     )

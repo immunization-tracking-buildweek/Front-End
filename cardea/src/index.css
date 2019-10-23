@@ -11,7 +11,7 @@ code {
     monospace;
 }
 
-.form {
+/* .form {
   width: 50%;
   position: relative;
   height: 50px;
@@ -68,7 +68,7 @@ code {
 form input:focus + .label-name:after, 
 .form input:valid + .label-name:after {
   transform: translateY(-0%);
-}
+} */
 
 .main-register-container {
   margin-top: 20px;

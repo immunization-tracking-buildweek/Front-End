@@ -39,7 +39,8 @@ export const authUsersLogin = ( patientLogin, props ) => dispatch => {
         .then(res => {
             console.log(`This is the login console.log in index.js - user_login`, res);
             dispatch({  type: USER_LOGIN_SUCCESS, payload: res.data });
-            localStorage.setItem('token', res.data.token )
+            localStorage.setItem('user_token', res.data.token )
+            localStorage.setItem('user_id', res.data.id )
             props.history.push("/patient-dashboard");
         })
         .catch(err => {
@@ -77,15 +78,16 @@ export const MED_LOGIN_START = "MED_LOGIN_START"
 export const MED_LOGIN_SUCCESS = "MED_LOGIN_SUCCESS"
 export const MED_LOGIN_FAILURE = "MED_LOGIN_FAILURE"
 
-export const authMedLogin = ( medLogin, props ) => dispatch => {
+export const authMedLogin = ( medProfLogin, props ) => dispatch => {
     dispatch({ type: MED_LOGIN_START })
 
     axiosWithAuth()
-        .post(`/auth/med-login`, medLogin )
+        .post(`/auth/med-login`, medProfLogin )
         .then(res => {
             console.log(`This is the initial console.log in index.js - med_login`, res);
             dispatch({  type: MED_LOGIN_SUCCESS, payload: res.data });
-            localStorage.setItem('token', res.data.token )
+            localStorage.setItem('med_token', res.data.medtoken )
+            localStorage.setItem('med_id', res.data.id )
             props.history.push("/medical-professional-dashboard");
         })
         .catch(err => {

@@ -4,7 +4,8 @@ import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom"
 
 
 // import components
-import PrivateRoute from "./utils/PrivateRoute"
+import MedPrivateRoute from "./utils/MedPrivateRoute"
+import UserPrivateRoute from "./utils/UserPrivateRoute"
 import MainRegistration from "./mainRegistration"
 import PatientLogin from "./components/patient/PatientLogin"
 import MedProfLogin from "./components/medPro/MedProfLogin"
@@ -22,11 +23,11 @@ function App() {
         <Link to = {"/medical-professional-login"} className="link-header">Medical Professional Login</Link> 
         <MainRegistration />
         <Switch>
-          <PrivateRoute 
+          <UserPrivateRoute 
             exact path="/patient-dashboard"
             component={PatientDashboard}
           />
-          <PrivateRoute 
+          <MedPrivateRoute 
             exact path="/medical-professional-dashboard"
             component={MedProfDashboard}
           />

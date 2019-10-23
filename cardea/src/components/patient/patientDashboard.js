@@ -1,11 +1,18 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 // imports 
-
+import axiosWithAuth from "../../utils/axiosWithAuth"
 
 // component
 export const PatientDashboard = () => {
     //console.log(props)
+
+    useEffect(() => {
+        axiosWithAuth()
+            .get(`/user/7`)
+            .then(res => console.log(res))
+            .catch(err => console.log(err))
+    }, [])
 
     return (
         <div>

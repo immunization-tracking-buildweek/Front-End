@@ -21,20 +21,24 @@ const PatientLogin = ( props ) => {
         console.log(patientLogin);
         e.preventDefault();
         props.authUsersLogin(patientLogin, props);
-        console.log(patientLogin);
     }
 
     return (
         <div>
             <form onSubmit={login}>
-                <input
-                    type='text'
-                    name='userEmail'
-                    value={props.userEmail}
-                    onChange={handleChange} 
-                    placeholder="User Email"
-                    label='email'
-                />
+                <div className="form">
+                    <input
+                        type='text'
+                        name='userEmail'
+                        value={props.userEmail}
+                        onChange={handleChange} 
+                        label='user email'
+                        required
+                    />
+                    <label for='email' className="label-name">
+                        <span className="content-name">User Email</span>
+                    </label>
+                </div>
                 <input
                     type='text'
                     name='userPassword'

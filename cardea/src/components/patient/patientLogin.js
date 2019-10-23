@@ -26,15 +26,18 @@ const PatientLogin = ( props ) => {
     return (
         <div>
             <form onSubmit={login}>
-                <input
-                    type='text'
-                    name='userEmail'
-                    value={props.userEmail}
-                    onChange={handleChange}
-                    placeholder='User Email'
-                    label='email'
-                />
-
+                <div className="form">
+                    <input
+                        type='text'
+                        name='userEmail'
+                        value={props.userEmail}
+                        onChange={handleChange} 
+                        required
+                    />
+                    <label for='email' className="label-name">
+                        <span className="content-name">User Email</span>
+                    </label>
+                </div>
                 <input
                     type='text'
                     name='userPassword'
@@ -52,12 +55,6 @@ const PatientLogin = ( props ) => {
 
 const mapStateToProps = state => {
     return {
-        // version 1
-        // patientInfo: state.patientInfo,
-        // isLoading: state.isLoading,
-        // error: state.error
-
-        // version 2
         patientInfo: state.patientLogin,
         isLoading: state.isLoading,
         error: state.error

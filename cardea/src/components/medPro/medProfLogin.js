@@ -38,7 +38,7 @@ const MedProfLogin =( props ) =>{
 
                 <input
                     type='text'
-                    name='password'
+                    name='medicPassword'
                     value={props.medicPassword}
                     onChange={handleChange}
                     placeholder='User password'

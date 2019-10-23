@@ -1,6 +1,6 @@
 // general imports 
 import axiosWithAuth from "../utils/axiosWithAuth"
-import axios from "axios"
+
 
 // 1. PATIENTS REGISTER
 // action types for user register
@@ -54,13 +54,13 @@ export const MED_REGISTER_START = "MEDIC_REGISTER_START"
 export const MED_REGISTER_SUCCESS = "MEDIC_REGISTER_SUCCESS"
 export const MED_REGISTER_FAILURE = "MEDIC_REGISTER_FAILURE"
 
-export const authMedRegister = ( medRegister, props ) => dispatch=> {
-    console.log(medRegister)
+export const authMedRegister = ( medProfRegister, props ) => dispatch=> {
+    console.log(medProfRegister)
     console.log(props)
     dispatch({ type: MED_REGISTER_START })
 
     axiosWithAuth()
-        .post(`/auth/med-register`, medRegister)
+        .post(`/auth/med-register`, medProfRegister)
         .then(res => {
             console.log(`This is the success console.log in index.js - med_register`, res);
             dispatch({ type: MED_REGISTER_SUCCESS });

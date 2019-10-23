@@ -11,7 +11,7 @@ import MedProfLogin from "./components/medPro/MedProfLogin"
 import PatientRegister from "./components/patient/PatientRegister"
 import MedProfRegister from "./components/medPro/MedProfRegister"
 import PatientDashboard from "./components/patient/patientDashboard"
-import MedProfDashboard from './components/medPro/MedProfDashboard';
+import MedProfDashboard from './components/medPro/medProfDashboard';
 
 function App() {
 
@@ -31,20 +31,20 @@ function App() {
             component={MedProfDashboard}
           />
           <Route 
-            exact path ="/medical-professional-login" 
-            render={props => <MedProfLogin {...props} />} 
+            exact path="/patient-register"
+            render={ props => <PatientRegister {...props} />}
           />
           <Route 
             exact path="/patient-login" 
             render={ props => <PatientLogin {...props} />} 
           />
           <Route 
-            exact path="/patient-register"
-            render={ props => <PatientRegister {...props} />}
+            exact path="/medical-professional-register"
+            render={props => <MedProfRegister {...props} />}
           />
           <Route 
-            exact path="/medical-professional-register"
-            render={() => <MedProfRegister />}
+            exact path ="/medical-professional-login" 
+            render={props => <MedProfLogin {...props} />} 
           />
         </Switch>
       </div>

@@ -7,6 +7,7 @@ const MedProfPatientCard = props =>{
         <div>
             <div>
                 <h1>Med Prof Info:</h1>
+                <h2>Name: {props.medicFirstName} {props.medicLastName}</h2>
                 <h2>MedProfID: {props.medproId} MedProfPosition: {props.position} MedProfEmail: {props.medicEmail}
                 </h2>
             </div>

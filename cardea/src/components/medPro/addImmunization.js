@@ -21,6 +21,26 @@ const AddImmunization = () => {
         <div>
             <h1>AddImmunization</h1>
             <form onSubmit={ImmunizationSubmit}>
+            <label>
+                    MedProf FirstName:
+                    <input
+                    type="text"
+                    name="medProfFirstName"
+                    placeholder= "First Name"
+                    value={newImmunization.medicFirstName}
+                    onChange={ImmunizationChange}
+                    />
+                </label>
+                <label>
+                    MedProf LastName:
+                    <input
+                    type="text"
+                    name="medProfLastName"
+                    placeholder= "Last Name"
+                    value={newImmunization.medicLastName}
+                    onChange={ImmunizationChange}
+                    />
+                </label>
                 <label>
                     MedProf Position:
                     <input
@@ -38,6 +58,16 @@ const AddImmunization = () => {
                     name="medProfID"
                     placeholder= "Med Prof ID"
                     value={newImmunization.medproId}
+                    onChange={ImmunizationChange}
+                    />
+                </label>
+                <label>
+                    MedProf Company:
+                    <input
+                    type="text"
+                    name="medProfCompany"
+                    placeholder= "Company/Hospital Name"
+                    value={newImmunization.company}
                     onChange={ImmunizationChange}
                     />
                 </label>

@@ -11,12 +11,12 @@ export const MainRegistration = () => {
 
     return (
         <div className="main-register-container">
-            <h1>Welcome to Cardea!</h1>
             <div>
-                <Link to="/patient-register" className="link-button">Register as a patient</Link>
+                <h1>Welcome to Cardea!</h1>
             </div>
-            <div>
-                <Link to="/medical-professional-register" className="link-button">Register as a medical professional</Link>
+            <div className="registration-buttons">
+                <Link to="/patient-register" className="link-button patient">Register as a patient</Link>
+                <Link to="/medical-professional-register" className="link-button med">Register as a medical professional</Link>
             </div>
         </div>
 

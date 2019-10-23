@@ -15,7 +15,7 @@ const MedProfRegister = props => {
 
     const handleChange = e => {
         setMedProfRegister({
-            setMedProfRegister,
+            ...medProfRegister,
             [e.target.name]: e.target.value
         })
     }

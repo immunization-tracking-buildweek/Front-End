@@ -209,7 +209,7 @@ export const deletePatient = ( deletePatientProps, props ) => dispatch => {
         .delete(`/user/patient/${patient_id}`, deletePatientProps )
         .then(res => {
             console.log(`This is the login console.log in index.js - delete_patient`, res);
-            dispatch({  type: DELETE_PATIENT_SUCCESS, payload: res.data });
+            dispatch({  type: DELETE_PATIENT_SUCCESS, payload: patient_id });
             // do we need this? 
             props.history.push("/patient-dashboard");
         })
@@ -271,6 +271,7 @@ export const editPermission = ( editPermissionProps, props ) => dispatch => {
 
 
 // ***    BOTH     *** // 
+// 3.4 below, also grants both user types access
 
 // 2.8 DISPLAY LIST OF PERMISSIONS BY PATIENT ON USER SIDE(GET) (BOTH USER AND MEDIC HAVE ACCESS)
 // action types for display patient - patient side ONLY - id === patient_id
@@ -313,7 +314,7 @@ export const medGetUserInfo = ( medGetUserInfoProps, props ) => dispatch => {
 
     // verify the correct id w/ Karen
     axiosWithAuth( medProId )
-        .get(`/perm/${medProId}`, medGetUserInfoProps )
+        .get(`/perm/${match.params.medProId}`, medGetUserInfoProps )
         .then(res => {
             console.log(`This is the login console.log in index.js - med_get_user_info`, res);
             dispatch({  type: MED_GET_USER_INFO_SUCCESS, payload: res.data });
@@ -363,7 +364,7 @@ export const deleteImmunization = ( deleteImmunizationProps, props ) => dispatch
         .delete(`/record/vaccine/${immunization_id}`, deleteImmunizationProps )
         .then(res => {
             console.log(`This is the initial console.log in index.js - delete_immunization`, res);
-            dispatch({ type: DELETE_IMMUNIZATION_SUCCESS, payload: res.data })
+            dispatch({ type: DELETE_IMMUNIZATION_SUCCESS, payload: immunization_id })
             props.history.push("/medical-professional-dashboard");
         })
         .catch(err => {
@@ -377,6 +378,7 @@ export const deleteImmunization = ( deleteImmunizationProps, props ) => dispatch
 
 
 // ***     BOTH     *** //
+// 2.8 above, also gives access to both user types
 
 // 3.4 GET IMMUNIZATION RECORD BY PATIENT ID (GET) (BOTH USER AND MEDIC HAVE ACCESS)
 // action types for the immunization records by patient id
@@ -401,4 +403,19 @@ export const getImmunizationInfo = ( getImmunizationInfoProps, props ) => dispat
             console.log(`This is the failure console.log in index.js - get_immunization_info`, err);
             dispatch({ type: GET_IMMUNIZATION_INFO_FAILURE, payload: err.response })
         })
+}
+
+
+
+
+// 4. LOGOUT
+// action types for logout
+export const LOGOUT = "LOGOUT"
+
+export const logout = ( logoutProps, props ) => dispatch => {
+    dispatch({ type: LOGOUT })
+    localStorage.removeItem( 'user_token' )
+    localStorage.removeItem( 'user_id' )
+    localStorage.removeItem( 'med_token' )
+    localStorage.removeItem( 'med_id' )
 }

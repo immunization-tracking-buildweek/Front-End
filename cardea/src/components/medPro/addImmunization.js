@@ -22,22 +22,32 @@ const AddImmunization = () => {
             <h1>AddImmunization</h1>
             <form onSubmit={ImmunizationSubmit}>
                 <label>
-                    First Name:
+                    MedProf Position:
                     <input
                     type="text"
-                    name="firstName"
-                    placeholder= "First Name"
-                    value={newImmunization.MedProfName}
+                    name="medProfPosition"
+                    placeholder= "Position"
+                    value={newImmunization.position}
                     onChange={ImmunizationChange}
                     />
                 </label>
                 <label>
-                    Last Name:
+                    MedProf ID:
                     <input
                     type="text"
-                    name="lastName"
-                    placeholder= "Last Name"
-                    value={newImmunization.MedProfLastName}
+                    name="medProfID"
+                    placeholder= "Med Prof ID"
+                    value={newImmunization.medproId}
+                    onChange={ImmunizationChange}
+                    />
+                </label>
+                <label>
+                    MedProf Email:
+                    <input
+                    type="text"
+                    name="medProfEmail"
+                    placeholder= "Med Prof Email"
+                    value={newImmunization.medicEmail}
                     onChange={ImmunizationChange}
                     />
                 </label>

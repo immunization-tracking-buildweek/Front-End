@@ -14,6 +14,13 @@ import MedProfRegister from "./components/medPro/MedProfRegister"
 import PatientDashboard from "./components/patient/patientDashboard"
 import MedProfDashboard from './components/medPro/medProfDashboard';
 
+//imports zack added in just now (4:50 pm CST on 10/23)
+import AddImmunization from "./components/medPro/addImmunization";
+import AddPatientForm from "./components/patient/AddPatientForm";
+import PermissionForm from "./components/patient/PermissionForm";
+
+
+
 function App() {
 
   return (
@@ -47,6 +54,19 @@ function App() {
             exact path ="/medical-professional-login" 
             render={props => <MedProfLogin {...props} />} 
           />
+          <Route 
+            exact path ="/permission" 
+            render={props => <PermissionForm {...props} />} 
+          />
+          <Route 
+            exact path ="/add-patient" 
+            render={props => <AddPatientForm {...props} />} 
+          />
+          <Route 
+            exact path ="/add-immunization" 
+            render={props => <AddImmunization {...props} />} 
+          />
+
         </Switch>
       </div>
     </Router>

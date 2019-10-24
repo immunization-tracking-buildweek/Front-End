@@ -18,6 +18,7 @@ export const PatientDashboard = props => {
   // useState for inputs/forms
   useEffect(() => {
     props.getUserInfo(user_id);
+    setUserInfo(props.getUserInfo);
     // setUserInfo(...payload)
   }, []);
 

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
-import { axiosWithAuth } from "axios"
+import {axiosWithAuth}  from "axios"
 
 // imports
 import { medGetUserInfo } from "../../actions";

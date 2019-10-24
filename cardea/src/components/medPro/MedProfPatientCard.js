@@ -40,4 +40,5 @@ const MedProfPatientCard = props => {
     </div>
   );
 };
+
 export default MedProfPatientCard;

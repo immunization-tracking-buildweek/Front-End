@@ -12,6 +12,12 @@ import {
   MED_LOGIN_START,
   MED_LOGIN_SUCCESS,
   MED_LOGIN_FAILURE,
+  GET_USER_INFO_START,
+  GET_USER_INFO_SUCCESS,
+  GET_USER_INFO_FAILURE,
+  GET_PATIENT_INFO_START,
+  GET_PATIENT_INFO_SUCCESS,
+  GET_PATIENT_INFO_FAILURE,
   MED_GET_USER_INFO_START,
   MED_GET_USER_INFO_SUCCESS,
   MED_GET_USER_INFO_FAILURE
@@ -24,14 +30,14 @@ const initialState = {
   error: "",
   patientInfo: [],
   medInfo: [],
-  isAuth: localStorage.getItem("token") ? true : false,
-  medProfSideInfo: []
+  medProfSideInfo: [],
+  isAuth: localStorage.getItem("token") ? true : false
 };
 
-// 1. Medical professional - get user info reducer
 export const reducer = (state = initialState, action) => {
   switch (action.type) {
-    // auth user registration reducer
+    // 1. PATIENT SIDE
+    // 1.1 Patient Registration Reducer
     case USER_REGISTER_START:
       return {
         ...state,
@@ -52,7 +58,7 @@ export const reducer = (state = initialState, action) => {
         isLoading: false
       };
 
-    // auth user login reducer
+    // 1.2 Patient Login Reducer
     case USER_LOGIN_START:
       return {
         ...state,
@@ -73,7 +79,30 @@ export const reducer = (state = initialState, action) => {
         isLoading: false
       };
 
-    // auth med register reducer
+    // 1.3 Patient Get Info
+    case GET_USER_INFO_START:
+      return {
+        ...state,
+        isLoading: true,
+        error: ""
+      };
+    case GET_USER_INFO_SUCCESS:
+      return {
+        ...state,
+        patientSideInfo: action.payload,
+        isLoading: false,
+        error: "",
+        user_id: ""
+      };
+    case GET_USER_INFO_FAILURE:
+      return {
+        ...state,
+        error: action.payload,
+        isLoading: false
+      };
+
+    // 2. MEDIC SIDE
+    // 2.1 MedProf Register Reducer
     case MED_REGISTER_START:
       return {
         ...state,
@@ -94,7 +123,7 @@ export const reducer = (state = initialState, action) => {
         isLoading: false
       };
 
-    // auth med login reducer
+    // 2.2 MedProf Login Reducer
     case MED_LOGIN_START:
       return {
         ...state,
@@ -115,7 +144,7 @@ export const reducer = (state = initialState, action) => {
         isLoading: false
       };
 
-    // med get user info reducer
+    // 2.3 MedProf get user info reducer
     case MED_GET_USER_INFO_START:
       return {
         ...state,

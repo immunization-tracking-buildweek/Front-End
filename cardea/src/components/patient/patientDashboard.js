@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 
 // imports
 import { getUserInfo } from "../../actions";
@@ -20,9 +21,9 @@ export const PatientDashboard = props => {
     // setUserInfo(...payload)
   }, []);
 
-  if (props.getUserInfo) {
-    return <h2>Loading patients...</h2>;
-  }
+  // if (props.getUserInfo) {
+  //   return <h2>Loading patients...</h2>;
+  // }
 
   return (
     <div>
@@ -32,21 +33,8 @@ export const PatientDashboard = props => {
       <div className="body">
         <h2>The PatientDashboard body goes here.</h2>
         <h3>Patient card here</h3>
-        {props.error && <p>{props.error}</p>}
-        {userInfo.map(item => (
-          <PatientCard
-            key={item.id}
-            firstName={item.firstName}
-            lastName={item.lastName}
-            isChild={item.isChild}
-            age={item.age}
-            gender={item.gender}
-            weight={item.weight}
-            height={item.height}
-            patientEmail={item.patientEmail}
-            patientPhone={item.patientPhone}
-          />
-        ))}
+        <h3>Add a patient below</h3>
+        <Link to={"/add-patient"}>Add a patient</Link>
       </div>
       <div className="footer">
         <h2>The PatientDashboard footer goes here.</h2>
@@ -69,3 +57,19 @@ export default connect(
   mapStateToProps,
   { getUserInfo }
 )(PatientDashboard);
+
+// {props.error && <p>{props.error}</p>}
+//         {userInfo.map(item => (
+//           <PatientCard
+//             key={item.id}
+//             firstName={item.firstName}
+//             lastName={item.lastName}
+//             isChild={item.isChild}
+//             age={item.age}
+//             gender={item.gender}
+//             weight={item.weight}
+//             height={item.height}
+//             patientEmail={item.patientEmail}
+//             patientPhone={item.patientPhone}
+//           />
+//         ))}

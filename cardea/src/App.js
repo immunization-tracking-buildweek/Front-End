@@ -5,7 +5,7 @@ import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
 // import components
 import MedPrivateRoute from "./utils/MedPrivateRoute";
 import UserPrivateRoute from "./utils/UserPrivateRoute";
-import MainRegistration from "./MainRegistration";
+import MainRegistration from "./mainRegistration";
 import PatientLogin from "./components/patient/PatientLogin";
 import MedProfLogin from "./components/medPro/MedProfLogin";
 import PatientRegister from "./components/patient/PatientRegister";
@@ -16,7 +16,7 @@ import MedProfDashboard from "./components/medPro/MedProfDashboard";
 //imports Zack added in just now (4:50 pm CST on 10/23)
 // Sean added an uppercase Z to zack ^^^ to commit
 import AddImmunization from "./components/medPro/AddImmunization";
-import AddPatientForm from "./components/patient/AddPatientForm";
+import AddPatientForm from "./components/patient/addPatientForm";
 import PermissionForm from "./components/patient/PermissionForm";
 
 function App() {

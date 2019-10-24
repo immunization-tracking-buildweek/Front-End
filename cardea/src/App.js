@@ -16,7 +16,7 @@ import MedProfDashboard from "./components/medPro/MedProfDashboard";
 //imports Zack added in just now (4:50 pm CST on 10/23)
 // Sean added an uppercase Z to zack ^^^ to commit
 import AddImmunization from "./components/medPro/AddImmunization";
-import AddPatientForm from "./components/patient/addPatientForm";
+import AddPatientForm from "./components/patient/AddPatientForm";
 import PermissionForm from "./components/patient/PermissionForm";
 
 function App() {

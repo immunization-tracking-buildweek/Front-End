@@ -13,7 +13,8 @@ import MedProfRegister from "./components/medPro/MedProfRegister";
 import PatientDashboard from "./components/patient/PatientDashboard";
 import MedProfDashboard from "./components/medPro/MedProfDashboard";
 
-//imports zack added in just now (4:50 pm CST on 10/23)
+//imports Zack added in just now (4:50 pm CST on 10/23)
+// Sean added an uppercase Z to zack ^^^ to commit
 import AddImmunization from "./components/medPro/AddImmunization";
 import AddPatientForm from "./components/patient/AddPatientForm";
 import PermissionForm from "./components/patient/PermissionForm";

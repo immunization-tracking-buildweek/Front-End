@@ -1,9 +1,9 @@
 import React from "react";
 import {useHistory} from "react-router-dom";
 
-const Navbar = () =>{
+const Navbar = (props) =>{
     const history = useHistory();
-
+    console.log(props);
     return (
         <nav style={{display: "flex"}}>
             <button onClick={(e) => {
@@ -11,6 +11,7 @@ const Navbar = () =>{
                 localStorage.clear();
                 history.push("/")
                 }}>Log Out</button>
+                <h3>Welcome, {`${props.info[0].medicFirstName}`}!</h3>
         </nav>
     )
 }

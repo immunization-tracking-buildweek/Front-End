@@ -17,6 +17,7 @@ export const MedProfDashboard = props => {
   console.log(props);
   const [patientInfo, setPatientInfo] = useState([]);
   console.log(patientInfo);
+  const [medProfInfo, setMedProfInfo] = useState({});
 
   // version 2 --> DATA NOT HERE
   // const [ patientInfo, setPatientInfo ] = useState( medGetUserInfo )
@@ -35,7 +36,7 @@ export const MedProfDashboard = props => {
     axiosWithAuthMed()
         .get(`/auth/med/${med_id}`)
         .then(res => {
-            console.log(res.data);
+            setMedProfInfo(res.data);
         })
         .catch(err => {
             console.log(`This is the error from medProfDash`, err)
@@ -71,7 +72,7 @@ export const MedProfDashboard = props => {
   return (
     <div>
       <div className="header">
-          <Navbar />
+          {medProfInfo.length && <Navbar info={medProfInfo}  />}
         <h1>The medProfDashboard header goes here.</h1>
       </div>
       <div className="body">
@@ -121,4 +122,3 @@ export default connect(
   mapStateToProps,
   { medGetUserInfo }
 )(MedProfDashboard);
-

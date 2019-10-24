@@ -7,6 +7,7 @@ import MedProfPatientCard from "./MedProfPatientCard"
 
 // component
 export const MedProfDashboard = (props) => {
+    setTimeout(() => {console.log("Timeout Props", props);}, 1000); 
     //console.log(props)
     // version 1
     console.log(props)
@@ -23,7 +24,7 @@ export const MedProfDashboard = (props) => {
     useEffect(() => {
         // version 1
         props.medGetUserInfo(med_id)
-        setPatientInfo("Props.payload", props.medProfSideInfo)
+        setPatientInfo(props.medProfSideInfo)
         console.log("useEffect props medProfDash", props)
         console.log("Props.medProfSideInfo", props.medProfSideInfo)
         console.log("useEffect props medProfDash", patientInfo)
@@ -85,7 +86,13 @@ export const MedProfDashboard = (props) => {
 }
 
 // mapStateToProps
-const mapStateToProps = ({ medProfSideInfo, isLoading, error }) => ({ medProfSideInfo, isLoading, error })
+const mapStateToProps = state => {
+    return {
+        medProfSideInfo: state.medProfSideInfo,
+        isLoading: state.isLoading,
+        error: state.error
+    }
+}
 
 //export
 export default connect (
@@ -93,8 +100,3 @@ export default connect (
     { medGetUserInfo }
 )(MedProfDashboard)
 
-// return {
-//     medProfSideInfo: state.medProfSideInfo,
-//     isLoading: state.isLoading,
-//     error: state.error
-// }

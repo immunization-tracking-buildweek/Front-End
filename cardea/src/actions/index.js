@@ -119,8 +119,6 @@ export const getUserInfo = ( user_id, props ) => dispatch => {
         .then(res => {
             console.log(`This is the login console.log in index.js - get_user_info`, res);
             dispatch({  type: GET_USER_INFO_SUCCESS, payload: res.data });
-            // do we need this? or will it just do it on the initial render after mapping through all the appropriate cards?
-            props.history.push("/patient-dashboard");
         })
         .catch(err => {
             console.log(`This is the failure console.log in index.js - get_user_info`, err);
@@ -330,7 +328,6 @@ export const medGetUserInfo = ( med_id, props ) => dispatch => {
             console.log(`This is the login console.log in index.js - med_get_user_info`, res);
             dispatch({  type: MED_GET_USER_INFO_SUCCESS, payload: res.data });
             // do we need this? or will it just do it on the initial render after mapping through all the appropriate cards?
-            props.history.push("/medical-professional-dashboard");
         })
         .catch(err => {
             console.log(`This is the failure console.log in index.js - med_get_user_info`, err);

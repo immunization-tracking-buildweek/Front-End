@@ -29,7 +29,6 @@ function App() {
         <Link to={"/medical-professional-login"} className="link-header">
           Medical Professional Login
         </Link>
-        <MainRegistration />
         <Switch>
           <UserPrivateRoute
             exact
@@ -40,6 +39,10 @@ function App() {
             exact
             path="/medical-professional-dashboard"
             component={MedProfDashboard}
+          />
+          <Route 
+            exact path="/" 
+            component={MainRegistration}
           />
           <Route
             exact

@@ -23,6 +23,9 @@ const MedProfPatientCard = props =>{
                 <button>Add info button?</button>
                 <button>Add Permission Button?</button>
             </div>
+
+            <Link to={`/add-immunization`}>
+            </Link>
         </div>
     )
 }

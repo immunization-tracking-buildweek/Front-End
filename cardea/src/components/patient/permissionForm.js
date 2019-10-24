@@ -1,7 +1,8 @@
 import React, {useState, useEffect} from 'react';
 
+
 //add props in tomorrow?? (below in permissionForm)
-const permissionForm = () => {
+const PermissionForm = () => {
     
     const [newConsent, setNewConsent] = useState({})
 
@@ -33,4 +34,4 @@ const permissionForm = () => {
     )
 }
 
-export default permissionForm;
+export default PermissionForm;

@@ -1,7 +1,7 @@
 import axios from "axios"
 
-const axiosWithAuth = () => {
-    const token = localStorage.getItem('user_token' || 'med_token');
+const axiosWithAuthMed = () => {
+    const token = localStorage.getItem('med_token');
     // return an instance of axios
     return axios.create({
         baseURL: "https://immunizationtracker-bw.herokuapp.com/api",
@@ -11,4 +11,4 @@ const axiosWithAuth = () => {
     })
 }
 
-export default axiosWithAuth
+export default axiosWithAuthMed

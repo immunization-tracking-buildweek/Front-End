@@ -1,5 +1,6 @@
 // general imports 
 import axiosWithAuth from "../utils/axiosWithAuth"
+import axiosWithAuthMed from "../utils/axiosWithAuthMed"
 
 // 1. REGISTRATION AND LOGIN 
 // 1.1 PATIENTS REGISTER
@@ -107,11 +108,14 @@ export const GET_USER_INFO_START = "GET_USER_INFO_START"
 export const GET_USER_INFO_SUCCESS = "GET_USER_INFO_SUCCESS"
 export const GET_USER_INFO_FAILURE = "GET_USER_INFO_FAILURE"
 
-export const getUserInfo = ( getUserInfoProps, props ) => dispatch => {
+export const getUserInfo = ( user_id, props ) => dispatch => {
+    console.log(user_id )
+    console.log(props)
     dispatch({ type: GET_USER_INFO_START })
 
-    axiosWithAuth( user_id )
-        .get(`/user/${user_id}`, getUserInfoProps )
+    
+    axiosWithAuth()
+        .get(`/user/${user_id}` )
         .then(res => {
             console.log(`This is the login console.log in index.js - get_user_info`, res);
             dispatch({  type: GET_USER_INFO_SUCCESS, payload: res.data });
@@ -130,11 +134,11 @@ export const GET_PATIENT_INFO_START = "GET_PATIENT_INFO_START"
 export const GET_PATIENT_INFO_SUCCESS = "GET_PATIENT_INFO_SUCCESS"
 export const GET_PATIENT_INFO_FAILURE = "GET_PATIENT_INFO_FAILURE"
 
-export const getPatientInfo = ( getPatientInfoProps, props ) => dispatch => {
+export const getPatientInfo = ( props ) => dispatch => {
     dispatch({ type: GET_PATIENT_INFO_START })
 
-    axiosWithAuth( patient_id )
-        .get(`/user/patient/${patient_id}`, getPatientInfoProps )
+    axiosWithAuth()
+        .get(`/user/patient/:id` )
         .then(res => {
             console.log(`This is the login console.log in index.js - get_patient_info`, res);
             dispatch({  type: GET_PATIENT_INFO_SUCCESS, payload: res.data });
@@ -157,8 +161,8 @@ export const addNewPatient = ( addNewPatientProps, props ) => dispatch => {
     dispatch({ type: ADD_NEW_PATIENT_START })
 
     // verify the correct id w/ Karen --> do we need an id??
-    axiosWithAuth( user_id )
-        .post(`/user/addpatient/${user_id}`, addNewPatientProps )
+    axiosWithAuth()
+        .post(`/user/addpatient/:id`, addNewPatientProps )
         .then(res => {
             console.log(`This is the login console.log in index.js - add_new_patient`, res);
             dispatch({  type: ADD_NEW_PATIENT_SUCCESS, payload: res.data });
@@ -181,8 +185,8 @@ export const editPatient = ( editPatientProps, props ) => dispatch => {
     dispatch({ type: EDIT_PATIENT_START })
 
     // verify the correct id w/ Karen --> 7??
-    axiosWithAuth( patient_id )
-        .put(`/user/patient/${patient_id}`, editPatientProps )
+    axiosWithAuth()
+        .put(`/user/patient/:id`, editPatientProps )
         .then(res => {
             console.log(`This is the login console.log in index.js - edit_patient`, res);
             dispatch({  type: EDIT_PATIENT_SUCCESS, payload: res.data });
@@ -195,21 +199,26 @@ export const editPatient = ( editPatientProps, props ) => dispatch => {
         })
 }
 
+
+
+// BELOW BELOW ADD ID TO PAYLOAD IN DISPATCH
+
+
 // 2.5 DELETE PATIENT INFO FROM USER ACCOUNT (DELETE) (USER ACCESS ONLY)
 // action types for delete patient info - patient side ONLY - patient_id (child)
 export const DELETE_PATIENT_START = "DELETE_PATIENT_START"
 export const DELETE_PATIENT_SUCCESS = "DELETE_PATIENT_SUCCESS"
 export const DELETE_PATIENT_FAILURE = "DELETE_PATIENT_FAILURE"
 
-export const deletePatient = ( deletePatientProps, props ) => dispatch => {
+export const deletePatient = ( props ) => dispatch => {
     dispatch({ type: DELETE_PATIENT_START })
 
     // verify the correct id w/ Karen
-    axiosWithAuth( patient_id )
-        .delete(`/user/patient/${patient_id}`, deletePatientProps )
+    axiosWithAuth()
+        .delete(`/user/patient/:id` )
         .then(res => {
             console.log(`This is the login console.log in index.js - delete_patient`, res);
-            dispatch({  type: DELETE_PATIENT_SUCCESS, payload: patient_id });
+            dispatch({  type: DELETE_PATIENT_SUCCESS});
             // do we need this? 
             props.history.push("/patient-dashboard");
         })
@@ -252,8 +261,8 @@ export const editPermission = ( editPermissionProps, props ) => dispatch => {
     dispatch({ type: EDIT_PERMISSION_START })
 
     // verify the correct id w/ Karen
-    axiosWithAuth( permission_id )
-        .put(`perm/update/${permission_id}`, editPermissionProps )
+    axiosWithAuth()
+        .put(`perm/update/:id`, editPermissionProps )
         .then(res => {
             console.log(`This is the login console.log in index.js - edit_permission`, res);
             dispatch({  type: EDIT_PERMISSION_SUCCESS, payload: res.data });
@@ -279,12 +288,12 @@ export const GET_PERMISSION_STATUS_START = "GET_PERMISSION_STATUS_START"
 export const GET_PERMISSION_STATUS_SUCCESS = "GET_PERMISSION_STATUS_SUCCESS"
 export const GET_PERMISSION_STATUS_FAILURE = "GET_PERMISSION_STATUS_FAILURE"
 
-export const getPermissionStatus = ( getPermissionStatusProps, props ) => dispatch => {
+export const getPermissionStatus = ( props ) => dispatch => {
     dispatch({ type: GET_PERMISSION_STATUS_START })
 
     // verify the correct id w/ Karen
-    axiosWithAuth( patient_id )
-        .get(`perm/update/${patient_id}`, getPermissionStatusProps )
+    axiosWithAuth()
+        .get(`perm/update/:id` )
         .then(res => {
             console.log(`This is the login console.log in index.js - get_permission_status`, res);
             dispatch({  type: GET_PERMISSION_STATUS_SUCCESS, payload: res.data });
@@ -309,12 +318,14 @@ export const MED_GET_USER_INFO_START = "MED_GET_USER_INFO_START"
 export const MED_GET_USER_INFO_SUCCESS = "MED_GET_USER_INFO_SUCCESS"
 export const MED_GET_USER_INFO_FAILURE = "MED_GET_USER_INFO_FAILURE"
 
-export const medGetUserInfo = ( medGetUserInfoProps, props ) => dispatch => {
+export const medGetUserInfo = ( med_id, props ) => dispatch => {
+    console.log(med_id)
+    console.log(props)
     dispatch({ type: MED_GET_USER_INFO_START })
 
     // verify the correct id w/ Karen
-    axiosWithAuth( medProId )
-        .get(`/perm/${match.params.medProId}`, medGetUserInfoProps )
+    axiosWithAuthMed()
+        .get(`/perm/${med_id}`)
         .then(res => {
             console.log(`This is the login console.log in index.js - med_get_user_info`, res);
             dispatch({  type: MED_GET_USER_INFO_SUCCESS, payload: res.data });
@@ -349,6 +360,11 @@ export const addImmunization = ( addImmunizationProps, props ) => dispatch => {
         })
 }
 
+
+
+// BELOW BELOW ADD ID TO PAYLOAD IN DISPATCH
+
+
 // 3.3 DELETE IMMUNIZATION RECORD FOR PATIENT (DELETE) (MEDIC ACCESS ONLY)
 // action types for deleteImmunizations - medic access only - id === immunization record
 // ASK KAREN ABOUT THE ID --> "record" or vaccineId ("id")
@@ -356,15 +372,15 @@ export const DELETE_IMMUNIZATION_START = "DELETE_IMMUNIZATION_START"
 export const DELETE_IMMUNIZATION_SUCCESS = "DELETE_IMMUNIZATION_SUCCESS"
 export const DELETE_IMMUNIZATION_FAILURE = "DELETE_IMMUNIZATION_FAILURE"
 
-export const deleteImmunization = ( deleteImmunizationProps, props ) => dispatch => {
+export const deleteImmunization = ( props ) => dispatch => {
     dispatch({ type: DELETE_IMMUNIZATION_START })
 
     // verify the correct id w/ Karen
-    axiosWithAuth( immunization_id )
-        .delete(`/record/vaccine/${immunization_id}`, deleteImmunizationProps )
+    axiosWithAuth()
+        .delete(`/record/vaccine/:id` )
         .then(res => {
             console.log(`This is the initial console.log in index.js - delete_immunization`, res);
-            dispatch({ type: DELETE_IMMUNIZATION_SUCCESS, payload: immunization_id })
+            dispatch({ type: DELETE_IMMUNIZATION_SUCCESS })
             props.history.push("/medical-professional-dashboard");
         })
         .catch(err => {
@@ -386,12 +402,12 @@ export const GET_IMMUNIZATION_INFO_START = "GET_IMMUNIZATION_INFO_START"
 export const GET_IMMUNIZATION_INFO_SUCCESS = "GET_IMMUNIZATION_INFO_SUCCESS"
 export const GET_IMMUNIZATION_INFO_FAILURE = "GET_IMMUNIZATION_INFO_FAILURE"
 
-export const getImmunizationInfo = ( getImmunizationInfoProps, props ) => dispatch => {
+export const getImmunizationInfo = ( props ) => dispatch => {
     dispatch({ type: GET_IMMUNIZATION_INFO_START })
 
     // verify the correct id w/ Karen
-    axiosWithAuth( patient_id )
-        .get(`/record/${patient_id}`, getImmunizationInfoProps )
+    axiosWithAuth()
+        .get(`/record/:id`)
         .then(res => {
             console.log(`This is the login console.log in index.js - get_immunization_info`, res);
             dispatch({  type: GET_IMMUNIZATION_INFO_SUCCESS, payload: res.data });

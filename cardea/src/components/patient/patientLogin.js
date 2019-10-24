@@ -50,6 +50,7 @@ const PatientLogin = ( props ) => {
     )
 };
 
+// mapStateToProps
 const mapStateToProps = state => {
     return {
         patientInfo: state.patientLogin,
@@ -58,6 +59,7 @@ const mapStateToProps = state => {
     }
 }
 
+//export
 export default connect (
     mapStateToProps,
     { authUsersLogin }

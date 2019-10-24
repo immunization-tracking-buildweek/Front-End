@@ -17,3 +17,4 @@ const PatientCard = props =>{
     )
 }
 export default PatientCard;
+

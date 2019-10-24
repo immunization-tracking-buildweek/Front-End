@@ -34,7 +34,7 @@ export const medGetUserInfoReducer = ( state = initialState, action ) => {
         case MED_GET_USER_INFO_SUCCESS:
             return {
                 ...state,
-                medProfSideInfo: action.payload,
+                medProfSideInfo: [...state.medProfSideInfo, action.payload],
                 isLoading: false,
                 error: ""
             }
@@ -86,7 +86,7 @@ export const deleteImmunizationReducer = ( state = initialState, action ) => {
                 error: ""
             }
         case DELETE_IMMUNIZATION_SUCCESS:
-            const newArr = state.medProfSideInfo.filter(deleteImmunization => deleteImmunization.id !== payload);
+            const newArr = state.medProfSideInfo.filter(deleteImmunization => deleteImmunization.id !== action.payload);
             return {
                 ...state,
                 medProfSideInfo: newArr,

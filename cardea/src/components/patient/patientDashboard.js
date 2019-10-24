@@ -1,18 +1,30 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
+import { connect } from "react-redux"
 
 // imports 
-import axiosWithAuth from "../../utils/axiosWithAuth"
+import { getUserInfo } from "../../actions"
+import PatientCard from "./patientCard";
 
 // component
-export const PatientDashboard = () => {
+export const PatientDashboard = (props) => {
     //console.log(props)
+    const [ userInfo, setUserInfo] = useState()
 
+    const user_id = localStorage.getItem('user_id');
+    console.log(user_id);
+
+    // useEffect to render all the information in a dashboard
+    // useState for inputs/forms
     useEffect(() => {
-        axiosWithAuth()
-            .get(`/user/7`)
-            .then(res => console.log(res))
-            .catch(err => console.log(err))
+        props.getUserInfo(user_id)
+        // setUserInfo(...payload)
     }, [])
+
+    if (props.getUserInfo) {
+        return <h2>Loading patients...</h2>
+    }
+
+   
 
     return (
         <div>
@@ -21,6 +33,22 @@ export const PatientDashboard = () => {
             </div>
             <div className="body">
                 <h2>The PatientDashboard body goes here.</h2>
+                <h3>Patient card here</h3>
+                {props.error && <p>{props.error}</p>}
+                {userInfo.map(item => (
+                    <PatientCard 
+                        key={item.id} 
+                        firstName={item.firstName}
+                        lastName={item.lastName}
+                        isChild={item.isChild}
+                        age={item.age}
+                        gender={item.gender}
+                        weight={item.weight}
+                        height={item.height}
+                        patientEmail={item.patientEmail}
+                        patientPhone={item.patientPhone}
+                    />
+                ))}
             </div>
             <div className="footer">
                 <h2>The PatientDashboard footer goes here.</h2>
@@ -29,5 +57,17 @@ export const PatientDashboard = () => {
     )
 }
 
+// mapStateToProps
+const mapStateToProps = state => {
+    return {
+        patientSideInfo: state.patientSideInfo,
+        isLoading: state.isLoading,
+        error: state.error
+    }
+}
+
 //export
-export default PatientDashboard
+export default connect (
+    mapStateToProps,
+    { getUserInfo }
+)(PatientDashboard)

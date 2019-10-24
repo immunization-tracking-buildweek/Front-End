@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
-import { axiosWithAuth } from "axios"
-
+import axiosWithAuthMed from "../../utils/axiosWithAuthMed"
 // imports
 import { medGetUserInfo } from "../../actions";
 import MedProfPatientCard from "./MedProfPatientCard";
@@ -33,6 +32,14 @@ export const MedProfDashboard = props => {
     console.log("useEffect props medProfDash", props);
     console.log("Props.medProfSideInfo", props.medProfSideInfo);
     console.log("useEffect props medProfDash", patientInfo);
+    axiosWithAuthMed()
+        .get(`/auth/med/${med_id}`)
+        .then(res => {
+            console.log(res.data);
+        })
+        .catch(err => {
+            console.log(`This is the error from medProfDash`, err)
+        })
 
     // version 2
     // console.log(props.medGetUserInfo(med_id)) --> DATA NOT HERE

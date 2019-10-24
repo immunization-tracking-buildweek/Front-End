@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import { getUserInfo } from "../../actions";
 import PatientCard from "./PatientCard";
 
+
 // component
 export const PatientDashboard = props => {
   //console.log(props)

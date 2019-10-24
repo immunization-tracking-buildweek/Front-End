@@ -5,6 +5,7 @@ import { connect } from "react-redux"
 // import * as Yup from "yup";
 
 const MedProfLogin =( props ) =>{
+    console.log(props);
     const [medProfLogin, setMedProfLogin] = useState({
         "medicEmail": "",
         "medicPassword": ""
@@ -17,10 +18,12 @@ const MedProfLogin =( props ) =>{
         })
     }
 
+
     const login = e => {
         console.log(medProfLogin);
         e.preventDefault();
         props.authMedLogin(medProfLogin, props);
+        props.history.push("/medical-professional-dashboard")
     }
 
 

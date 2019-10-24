@@ -5,6 +5,7 @@ import { axiosWithAuth } from "axios"
 // imports
 import { medGetUserInfo } from "../../actions";
 import MedProfPatientCard from "./MedProfPatientCard";
+import Navbar from "../NavAndFooterComps/Navbar"
 
 // component
 export const MedProfDashboard = props => {
@@ -63,6 +64,7 @@ export const MedProfDashboard = props => {
   return (
     <div>
       <div className="header">
+          <Navbar />
         <h1>The medProfDashboard header goes here.</h1>
       </div>
       <div className="body">

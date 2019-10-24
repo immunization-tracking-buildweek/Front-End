@@ -11,7 +11,7 @@ const Navbar = (props) =>{
                 localStorage.clear();
                 history.push("/")
                 }}>Log Out</button>
-                <h3>Welcome, {`${props.info[0].medicFirstName}`}!</h3>
+                <h3>Welcome, {`${props.info[0].medicFirstName}`}!!</h3>
         </nav>
     )
 }

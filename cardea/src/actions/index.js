@@ -400,18 +400,17 @@ export const ADD_IMMUNIZATION_START = "ADD_IMMUNIZATION_START";
 export const ADD_IMMUNIZATION_SUCCESS = "ADD_IMMUNIZATION_SUCCESS";
 export const ADD_IMMUNIZATION_FAILURE = "ADD_IMMUNIZATION_FAILURE";
 
-export const addImmunization = (addImmunizationProps, props) => dispatch => {
+export const addImmunization = (body) => dispatch => {
   dispatch({ type: ADD_IMMUNIZATION_START });
 
   axiosWithAuth()
-    .post(`/record/addImmunization`, addImmunizationProps)
+    .post(`/record/addImmunization`, body)
     .then(res => {
       console.log(
         `This is the initial console.log in index.js - add_Immunization`,
         res
       );
       dispatch({ type: ADD_IMMUNIZATION_SUCCESS, payload: res.data });
-      props.history.push("/medical-professional-dashboard");
     })
     .catch(err => {
       console.log(

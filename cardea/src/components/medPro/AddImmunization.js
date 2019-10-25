@@ -1,101 +1,81 @@
 import React, {useState, useEffect} from 'react';
+import {connect} from "react-redux"
+import axiosWithAuthMed from "../../utils/axiosWithAuthMed"
 
-
-const AddImmunization = () => {
+const AddImmunization = props => {
     //props?
-    const [newImmunization, setNewImmunization] = useState({ MedProfName: "", MedProfLastName: "", CurrentDate: ""})
+    const [newImmunization, setNewImmunization] = useState({ 
+        vaccineName: "",
+        vaccineDate: "",
+        vaccineLocation: "",
+        patientId: 0,
+        isCompleted: false
+    })
 
     const ImmunizationChange = e => {
-        setNewImmunization({})
+        setNewImmunization({
+            ...newImmunization,
+            [e.target.name]: e.target.value
+        })
     }
 
 
-    const ImmunizationSubmit = e => {
+    const ImmunizationSubmit = (e) => {
         e.preventDefault();
+        
+        axiosWithAuthMed()
+            .post(`/record/addImmunization`, newImmunization)
+            .then(res => {  
+                console.log(`immunization form`, res.data)
+              })
+            .catch(err => {
+            console.log(
+                `This is the failure console.log in index.js - add_Immunization`,
+                err
+            )})
+            props.history.push("/medical-professional-dashboard") 
+        }
 
-        setNewImmunization({firstName: "", lastName: "", birthDate: ""});
-    }
 
+    console.log(props.medProfSideInfo);
     //as of now the user will not know what the patient id is (we will need to talk to karen)
     return (
         <div>
             <h1>AddImmunization</h1>
             <form onSubmit={ImmunizationSubmit}>
-            <label>
-                    MedProf FirstName:
-                    <input
-                    type="text"
-                    name="medProfFirstName"
-                    placeholder= "First Name"
-                    value={newImmunization.medicFirstName}
-                    onChange={ImmunizationChange}
-                    />
-                </label>
                 <label>
-                    MedProf LastName:
-                    <input
-                    type="text"
-                    name="medProfLastName"
-                    placeholder= "Last Name"
-                    value={newImmunization.medicLastName}
-                    onChange={ImmunizationChange}
-                    />
-                </label>
-                <label>
-                    MedProf Position:
-                    <input
-                    type="text"
-                    name="medProfPosition"
-                    placeholder= "Position"
-                    value={newImmunization.position}
-                    onChange={ImmunizationChange}
-                    />
-                </label>
-                <label>
-                    MedProf ID:
-                    <input
-                    type="text"
-                    name="medProfID"
-                    placeholder= "Med Prof ID"
-                    value={newImmunization.medproId}
-                    onChange={ImmunizationChange}
-                    />
-                </label>
-                <label>
-                    MedProf Company:
-                    <input
-                    type="text"
-                    name="medProfCompany"
-                    placeholder= "Company/Hospital Name"
-                    value={newImmunization.company}
-                    onChange={ImmunizationChange}
-                    />
-                </label>
-                <label>
-                    MedProf Email:
-                    <input
-                    type="text"
-                    name="medProfEmail"
-                    placeholder= "Med Prof Email"
-                    value={newImmunization.medicEmail}
-                    onChange={ImmunizationChange}
+                    Administered
+                    <input  
+                        type="checkbox"
+                        name="isCompleted"
+                        value={newImmunization.isCompleted}
+                        onChange={(e) => {
+                            setNewImmunization({
+                                ...newImmunization,
+                                [e.target.name]: !newImmunization.isCompleted
+                            })}}
                     />
                 </label>
                 <label>
                     Patient ID:
                     <input
-                    type="text"
-                    name="patientID"
+                    type="number"
+                    name="patientId"
                     placeholder= "Patient ID"
                     value={newImmunization.patientId}
-                    onChange={ImmunizationChange}
+                    onChange={(e) => {
+                        setNewImmunization({
+                            ...newImmunization,
+                            [e.target.name]: parseInt(e.target.value)
+                        })
+                    }}
                     />
                 </label>
                 <label>
                     Vaccine Name:
                     <input
                     type="text"
-                    name="immunizationName"
+                    name="vaccineName"
                     placeholder= "Vaccine Name"
                     value={newImmunization.vaccineName}
                     onChange={ImmunizationChange}
@@ -105,7 +85,7 @@ const AddImmunization = () => {
                     Vaccine Date:
                     <input
                     type="text"
-                    name="immunizationDate"
+                    name="vaccineDate"
                     placeholder= "mm/dd/yyyy"
                     value={newImmunization.vaccineDate}
                     onChange={ImmunizationChange}
@@ -115,7 +95,7 @@ const AddImmunization = () => {
                     Location Vaccinated:
                     <input
                     type="text"
-                    name="immunizationLocation"
+                    name="vaccineLocation"
                     placeholder= "Hospital Name/Location"
                     value={newImmunization.vaccineLocation}
                     onChange={ImmunizationChange}
@@ -127,4 +107,11 @@ const AddImmunization = () => {
     )
 }
 
-export default AddImmunization;
+const mapStateToProps = state => {
+    return{
+        medProfSideInfo: state.medProfSideInfo
+    }
+}
+export default connect(
+    mapStateToProps,
+)(AddImmunization)

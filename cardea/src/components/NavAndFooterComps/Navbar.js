@@ -11,9 +11,10 @@ const Navbar = (props) =>{
                 localStorage.clear();
                 history.push("/")
                 }}>Log Out</button>
-                <h3>Welcome, {`${props.info[0].medicFirstName}`}!!</h3>
+            {localStorage.getItem("med_id") ? <h3>Welcome, {`${props.info[0].medicFirstName}`}!!</h3> : <h3>Welcome, {`${props.info[0].firstName}`}!!</h3>}
         </nav>
     )
 }
 
 export default Navbar;
+

@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 
 // imports
-import { getUserInfo, addNewPatient } from "../../actions";
+import { getUserInfo } from "../../actions";
 import PatientCard from "./PatientCard";
 import Navbar from "../NavAndFooterComps/Navbar"
 import axiosWithAuth from "../../utils/axiosWithAuth"

@@ -1,21 +1,39 @@
 import React, { useState, useEffect } from "react";
+import { addNewPatient } from "../../actions";
+import { connect } from "react-redux"
 
-const AddPatientForm = () => {
+const AddPatientForm = ( props ) => {
   //props?
+  const user_id = localStorage.getItem("user_id");
+  console.log(user_id);
+
   const [newPatient, setNewPatient] = useState({
     firstName: "",
     lastName: "",
-    birthDate: ""
+    age: 0,
+    gender: "",
+    weight: "",
+    height: "",
+    patientEmail: "",
+    patientPhone: "",
+    isChild: false,
+    userId: user_id
   });
 
+  
+
   const PatientChange = e => {
-    setNewPatient({});
+    setNewPatient({
+      ...newPatient,
+      [e.target.name]: e.target.value
+    });
   };
 
   const PatientSubmit = e => {
     e.preventDefault();
 
-    setNewPatient({ firstName: "", lastName: "", birthDate: "" });
+    props.addNewPatient(newPatient);
+    props.history.push("/patient-dashboard")
   };
 
   return (
@@ -45,11 +63,16 @@ const AddPatientForm = () => {
         <label>
           Age:
           <input
-            type="text"
+            type="number"
             name="age"
             placeholder="Age"
             value={newPatient.age}
-            onChange={PatientChange}
+            onChange={(e) => {
+              setNewPatient({
+                ...newPatient,
+                [e.target.name]: parseInt(e.target.value)
+              });
+            }}
           />
         </label>
         <label>
@@ -102,11 +125,35 @@ const AddPatientForm = () => {
             onChange={PatientChange}
           />
         </label>
-
+        <label>
+          Is the patient a minor? Check yes
+          <input
+            type="checkbox"
+            name="isChild"
+            value={newPatient.isChild}
+            onChange={(e) => {
+              setNewPatient({
+                ...newPatient,
+                [e.target.name]: !newPatient.isChild
+              });
+            }}
+          />
+        </label>
         <button>Add Patient</button>
       </form>
     </div>
   );
 };
 
-export default AddPatientForm;
+const mapStateToProps = state => {
+  return{
+    patientInfo: state.patientInfo,
+    isLoading: state.isLoading,
+    error: state.error
+  }
+}
+
+export default connect (
+  mapStateToProps,
+  { addNewPatient }
+)(AddPatientForm);

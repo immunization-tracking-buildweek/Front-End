@@ -186,12 +186,12 @@ export const ADD_NEW_PATIENT_START = "ADD_NEW_PATIENT_START";
 export const ADD_NEW_PATIENT_SUCCESS = "ADD_NEW_PATIENT_SUCCESS";
 export const ADD_NEW_PATIENT_FAILURE = "ADD_NEW_PATIENT_FAILURE";
 
-export const addNewPatient = (addNewPatientProps, props) => dispatch => {
+export const addNewPatient = (body) => dispatch => {
   dispatch({ type: ADD_NEW_PATIENT_START });
 
   // verify the correct id w/ Karen --> do we need an id??
   axiosWithAuth()
-    .post(`/user/addpatient/:id`, addNewPatientProps)
+    .post(`/user/addpatient`, body)
     .then(res => {
       console.log(
         `This is the login console.log in index.js - add_new_patient`,

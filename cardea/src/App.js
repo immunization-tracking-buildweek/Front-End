@@ -12,6 +12,7 @@ import PatientRegister from "./components/patient/PatientRegister";
 import MedProfRegister from "./components/medPro/MedProfRegister";
 import PatientDashboard from "./components/patient/PatientDashboard";
 import MedProfDashboard from "./components/medPro/MedProfDashboard";
+import AddMedicalProf from "./components/patient/AddMedicalProf"
 
 //imports Zack added in just now (4:50 pm CST on 10/23)
 // Sean added an uppercase Z to zack ^^^ to commit
@@ -78,6 +79,11 @@ function App() {
             exact
             path="/add-immunization"
             render={props => <AddImmunization {...props} />}
+          />
+           <Route
+            exact
+            path="/add-medical-prof"
+            render={props => <AddMedicalProf {...props} />}
           />
         </Switch>
       </div>

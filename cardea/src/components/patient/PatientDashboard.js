@@ -64,6 +64,12 @@ export const PatientDashboard = props => {
           e.preventDefault();
           props.history.push("/add-patient")
         }} >Add patient</button>
+        <button
+          onClick={e => {
+            e.preventDefault();
+            props.history.push("/add-medical-prof");
+          }}
+        >Add a medical professional</button>
       </div>
       <div className="body">
         <h2>The PatientDashboard body goes here.</h2>

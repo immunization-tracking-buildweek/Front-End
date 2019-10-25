@@ -5,12 +5,19 @@ import { Link } from "react-router-dom";
 // imports
 import { getUserInfo } from "../../actions";
 import PatientCard from "./PatientCard";
+import Navbar from "../NavAndFooterComps/Navbar"
+import axiosWithAuth from "../../utils/axiosWithAuth"
 
 
 // component
 export const PatientDashboard = props => {
   //console.log(props)
+  setTimeout(() => {
+    console.log("Timeout Props", props);
+  }, 1000);
+
   const [userInfo, setUserInfo] = useState();
+  const [navbarInfo, setNavbarInfo] = useState({});
 
   const user_id = localStorage.getItem("user_id");
   console.log(user_id);
@@ -21,8 +28,20 @@ export const PatientDashboard = props => {
     props.getUserInfo(user_id);
     setUserInfo(props.getUserInfo);
     // setUserInfo(...payload)
+    axiosWithAuth()
+      .get(`/user/${user_id}`)
+      .then(res => {
+        console.log(res.data)
+        setNavbarInfo(res.data)
+      })
+      .catch(err => {
+        console.log(`This is the error form patientDash`, err)
+      })
+      console.log(userInfo, navbarInfo)
   }, []);
 
+  console.log(props.getUserInfo);
+  console.log(navbarInfo);
   // if (props.getUserInfo) {
   //   return <h2>Loading patients...</h2>;
   // }
@@ -30,6 +49,7 @@ export const PatientDashboard = props => {
   return (
     <div>
       <div className="header">
+        {navbarInfo.length && <Navbar info={navbarInfo}/>}
         <h1>The PatientDashboard header goes here.</h1>
       </div>
       <div className="body">

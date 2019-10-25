@@ -64,6 +64,7 @@ export const MedProfDashboard = props => {
   console.log(props.medProfSideInfo);
   // set to a const
   const patientData = props.medProfSideInfo;
+  console.log(patientData);
   console.log(typeof patientData);
   setTimeout(() => console.log(typeof patientInfo), 1000)
   // setState

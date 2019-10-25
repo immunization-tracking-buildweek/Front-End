@@ -198,8 +198,6 @@ export const addNewPatient = (addNewPatientProps, props) => dispatch => {
         res
       );
       dispatch({ type: ADD_NEW_PATIENT_SUCCESS, payload: res.data });
-      // do we need this? or will it just do it on the initial render after mapping through all the appropriate cards?
-      props.history.push("/patient-dashboard");
     })
     .catch(err => {
       console.log(

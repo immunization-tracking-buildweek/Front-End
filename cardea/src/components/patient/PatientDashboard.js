@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 
 // imports
-import { getUserInfo } from "../../actions";
+import { getUserInfo, addNewPatient } from "../../actions";
 import PatientCard from "./PatientCard";
 import Navbar from "../NavAndFooterComps/Navbar"
 import axiosWithAuth from "../../utils/axiosWithAuth"
@@ -54,11 +54,16 @@ export const PatientDashboard = props => {
   setTimeout(() => console.log(typeof userInfo), 1000)
   setTimeout(() => console.log(navbarInfo), 1000)
 
+
   return (
     <div>
       <div className="header">
         {navbarInfo.length && <Navbar info={navbarInfo}/>}
         <h1>The PatientDashboard header goes here.</h1>
+        <button onClick={(e) =>{
+          e.preventDefault();
+          props.history.push("/add-patient")
+        }} >Add patient</button>
       </div>
       <div className="body">
         <h2>The PatientDashboard body goes here.</h2>

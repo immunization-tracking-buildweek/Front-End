@@ -100,7 +100,7 @@ const PatientLogin = props => {
             <LockOutlinedIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
-            New Patient Registration
+            New Patient Login
           </Typography>
           <form className={classes.form} noValidate onSubmit={login}>
             <TextField
@@ -150,7 +150,7 @@ const PatientLogin = props => {
               </Grid>
               <Grid item>
                 <Link href="/patient-login" variant="body2" className={classes.text}>
-                  {"Have an account? Sign In"}
+                {"Don't have an account? Register here!"}
                 </Link>
               </Grid>
             </Grid>

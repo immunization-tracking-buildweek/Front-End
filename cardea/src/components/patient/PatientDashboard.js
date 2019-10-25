@@ -16,7 +16,7 @@ export const PatientDashboard = props => {
     console.log("Timeout Props", props);
   }, 1000);
 
-  const [userInfo, setUserInfo] = useState();
+  const [userInfo, setUserInfo] = useState([]);
   const [navbarInfo, setNavbarInfo] = useState({});
 
   const user_id = localStorage.getItem("user_id");
@@ -42,9 +42,17 @@ export const PatientDashboard = props => {
 
   console.log(props.getUserInfo);
   console.log(navbarInfo);
+  console.log(userInfo);
   // if (props.getUserInfo) {
   //   return <h2>Loading patients...</h2>;
   // }
+
+  console.log(props.patientSideInfo);
+  const patientSideData = props.patientSideInfo;
+  console.log(patientSideData);
+  console.log(typeof patientSideData);
+  setTimeout(() => console.log(typeof userInfo), 1000)
+  setTimeout(() => console.log(navbarInfo), 1000)
 
   return (
     <div>
@@ -55,6 +63,21 @@ export const PatientDashboard = props => {
       <div className="body">
         <h2>The PatientDashboard body goes here.</h2>
         <h3>Patient card here</h3>
+        {navbarInfo.length && navbarInfo.map(item => (
+          <PatientCard
+            firstName={item.firstName}
+            lastName={item.lastName}
+            isChild={item.isChild}
+            age={item.age}
+            gender={item.gender}
+            weight={item.weight}
+            height={item.height}
+            patientEmail={item.patientEmail}
+            patientPhone={item.patientPhone}
+          />
+        ))}
+
+
         <h3>Add a patient below</h3>
         <Link to={"/add-patient"}>Add a patient</Link>
       </div>
@@ -80,18 +103,5 @@ export default connect(
   { getUserInfo }
 )(PatientDashboard);
 
-// {props.error && <p>{props.error}</p>}
-//         {userInfo.map(item => (
-//           <PatientCard
-//             key={item.id}
-//             firstName={item.firstName}
-//             lastName={item.lastName}
-//             isChild={item.isChild}
-//             age={item.age}
-//             gender={item.gender}
-//             weight={item.weight}
-//             height={item.height}
-//             patientEmail={item.patientEmail}
-//             patientPhone={item.patientPhone}
-//           />
-//         ))}
+
+

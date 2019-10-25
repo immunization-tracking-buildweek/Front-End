@@ -74,21 +74,12 @@ export const MedProfDashboard = props => {
     <div>
       <div className="header">
           {medProfInfo.length && <Navbar info={medProfInfo}  />}
-        <h1>The medProfDashboard header goes here.</h1>
+        <h1>Welcome to your dashboard.</h1>
       </div>
       <div className="body">
-        <h2>The medProfDashboard body goes here.</h2>
-        <h3>Patient card here</h3>
-        {/* {patientData && <h3>{patientData[0].medicFirstName}</h3>} */}
-
-
-        {/* {patientInfo.map(item => ( */}
         {patientData.map(item => (
           <MedProfPatientCard
-            medicFirstName={item.medicFirstName}
-            medicLastName={item.medicLastName}
-            position={item.position}
-            patientId={item.patientId}
+            key={item.patientId}
             firstName={item.firstName}
             lastName={item.lastName}
             isChild={item.isChild}
@@ -98,7 +89,6 @@ export const MedProfDashboard = props => {
             height={item.height}
             patientEmail={item.patientEmail}
             patientPhone={item.patientPhone}
-            permission={item.permission}
           />
         ))}
       </div>

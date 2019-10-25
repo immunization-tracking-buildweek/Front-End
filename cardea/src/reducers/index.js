@@ -15,12 +15,12 @@ import {
   GET_USER_INFO_START,
   GET_USER_INFO_SUCCESS,
   GET_USER_INFO_FAILURE,
-  GET_PATIENT_INFO_START,
-  GET_PATIENT_INFO_SUCCESS,
-  GET_PATIENT_INFO_FAILURE,
   MED_GET_USER_INFO_START,
   MED_GET_USER_INFO_SUCCESS,
-  MED_GET_USER_INFO_FAILURE
+  MED_GET_USER_INFO_FAILURE,
+  ADD_NEW_PATIENT_START,
+  ADD_NEW_PATIENT_SUCCESS,
+  ADD_NEW_PATIENT_FAILURE,
 } from "../actions";
 
 // initialState
@@ -100,6 +100,28 @@ export const reducer = (state = initialState, action) => {
         error: action.payload,
         isLoading: false
       };
+    
+    // 1.4 Add New Patient
+    case ADD_NEW_PATIENT_START:
+      return {
+        ...state,
+        isLoading: true,
+        error: ""
+      };
+    case ADD_NEW_PATIENT_SUCCESS:
+      return {
+        ...state,
+        patientInfo: action.payload,
+        isLoading: false,
+        error: ""
+      };
+    case ADD_NEW_PATIENT_FAILURE:
+      return {
+        ...state,
+        error: action.payload,
+        isLoading: false
+      };
+
 
     // 2. MEDIC SIDE
     // 2.1 MedProf Register Reducer

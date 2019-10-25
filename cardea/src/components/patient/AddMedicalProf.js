@@ -45,7 +45,7 @@ const AddMedicalProf = props => {
               <h2>Email: {prof.medicEmail}</h2>
               <button onClick={e => {
                   addMedProf(e, prof.id);
-                  props.history.push("/patient-dashboard")
+                  props.history.push("/medical-professional-dashboard")
                 }}>
                 Add {prof.medicFirstName} {prof.medicLastName}
               </button>

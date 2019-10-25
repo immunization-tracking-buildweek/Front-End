@@ -1,7 +1,23 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import axiosWithAuth from "../../utils/axiosWithAuth"
 
 const PatientCard = props => {
+  const [patientImmunizations, setPatientImmunizations] = useState([])
+  const patientId = localStorage.getItem("user_id");
+
+  useEffect(() => {
+    axiosWithAuth()
+      .get(`/record/${patientId}`)
+      .then(res => {
+        console.log(res.data)
+        setPatientImmunizations(res.data)
+      })
+      .catch(err => {
+        console.log(`This is the get immunization error`, err)
+      })
+  }, [])
+
   console.log("This is the patient card", props);
   return (
     <div>
@@ -15,6 +31,16 @@ const PatientCard = props => {
         <h3>
           {props.patientEmail} {props.patientPhone}
         </h3>
+        {patientImmunizations.length && patientImmunizations.map(immunization => {
+          return (
+            <div>
+              <h2>Vaccine Name: {immunization.vaccineName}</h2>
+              <h2>Date administered: {immunization.vaccineDate}</h2>
+              <h2>Location: {immunization.vaccineLocation}</h2>
+              <h2>Administered: {immunization.isCompleted ? "yes" : "no"}</h2>
+            </div>
+          )
+        })}
         <button>Add info button?</button>
         <button>Add Permission Button?</button>
       </div>

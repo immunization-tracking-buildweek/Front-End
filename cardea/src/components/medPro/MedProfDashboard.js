@@ -79,7 +79,7 @@ export const MedProfDashboard = props => {
       <div className="body">
         {patientData.map(item => (
           <MedProfPatientCard
-            key={item.patientId}
+            patientId={item.patientId}
             firstName={item.firstName}
             lastName={item.lastName}
             isChild={item.isChild}
